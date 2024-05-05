@@ -1,8 +1,9 @@
 """Utility Functions"""
-# Author: Ashim Bhattarai
+# Author: Ashim Bhattarai, Ömür Gültekin
 # License: BSD 3 clause
 
 import numpy as np
+import pandas as pd
 
 
 def masked_euclidean_distances(X, Y=None, squared=False,
@@ -93,7 +94,7 @@ def masked_euclidean_distances(X, Y=None, squared=False,
 
     # else:
     if missing_values not in ["NaN", np.nan] and (
-            np.any(np.isnan(X)) or (Y is not X and np.any(np.isnan(Y)))):
+            np.any(pd.isna(X)) or (Y is not X and np.any(pd.isna(Y)))):
         raise ValueError(
             "NaN values present but missing_value = {0}".format(
                 missing_values))
