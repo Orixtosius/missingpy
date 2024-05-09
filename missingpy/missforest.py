@@ -3,7 +3,7 @@
 # License: GNU General Public License v3 (GPLv3)
 
 import warnings
-
+import pandas as pd
 import numpy as np
 from scipy.stats import mode
 
@@ -434,8 +434,7 @@ class MissForest(BaseEstimator, TransformerMixin):
         """
 
         # Check data integrity and calling arguments
-        force_all_finite = False if self.missing_values in ["NaN",
-                                                            np.nan] else True
+        force_all_finite = pd.notnull(self.missing_values)
 
         X = check_array(X, accept_sparse=False, dtype=np.float64,
                         force_all_finite=force_all_finite, copy=self.copy)
