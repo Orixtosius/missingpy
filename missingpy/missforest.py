@@ -498,8 +498,9 @@ class MissForest(BaseEstimator, TransformerMixin):
         check_is_fitted(self, ["cat_vars_", "num_vars_", "statistics_"])
 
         # Check data integrity
-        force_all_finite = False if self.missing_values in ["NaN",
-                                                            np.nan] else True
+        # force_all_finite = False if self.missing_values in ["NaN",
+        #                                                     np.nan] else True
+        force_all_finite = pd.notnull(self.missing_values)
         X = check_array(X, accept_sparse=False, dtype=np.float64,
                         force_all_finite=force_all_finite, copy=self.copy)
 
